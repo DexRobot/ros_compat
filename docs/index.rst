@@ -48,26 +48,17 @@ Here's a simple example of using the compatibility layer::
 API Reference
 ------------
 
-ROSNode
-~~~~~~~
-
-.. autoclass:: ros_compat.ROSNode
+.. automodule:: ros_compat.node
    :members:
    :undoc-members:
    :show-inheritance:
 
-ROSTime
-~~~~~~~
-
-.. autoclass:: ros_compat.ROSTime
+.. automodule:: ros_compat.time
    :members:
    :undoc-members:
    :show-inheritance:
 
-ROSLogger
-~~~~~~~~~
-
-.. autoclass:: ros_compat.ROSLogger
+.. automodule:: ros_compat.logging
    :members:
    :undoc-members:
    :show-inheritance:
