@@ -45,7 +45,32 @@
 <li><a class="reference internal" href="#">ROS Compatibility Layer Documentation</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#quick-start">Quick Start</a></li>
-<li><a class="reference internal" href="#api-reference">API Reference</a></li>
+<li><a class="reference internal" href="#api-reference">API Reference</a><ul>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode"><code class="docutils literal notranslate"><span class="pre">ROSNode</span></code></a><ul>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.create_client"><code class="docutils literal notranslate"><span class="pre">ROSNode.create_client()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.create_publisher"><code class="docutils literal notranslate"><span class="pre">ROSNode.create_publisher()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.create_service"><code class="docutils literal notranslate"><span class="pre">ROSNode.create_service()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.create_subscription"><code class="docutils literal notranslate"><span class="pre">ROSNode.create_subscription()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.create_timer"><code class="docutils literal notranslate"><span class="pre">ROSNode.create_timer()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.shutdown"><code class="docutils literal notranslate"><span class="pre">ROSNode.shutdown()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.spin"><code class="docutils literal notranslate"><span class="pre">ROSNode.spin()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.node.ROSNode.spin_once"><code class="docutils literal notranslate"><span class="pre">ROSNode.spin_once()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ros_compat.time.ROSTime"><code class="docutils literal notranslate"><span class="pre">ROSTime</span></code></a><ul>
+<li><a class="reference internal" href="#ros_compat.time.ROSTime.now"><code class="docutils literal notranslate"><span class="pre">ROSTime.now()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.time.ROSTime.sleep"><code class="docutils literal notranslate"><span class="pre">ROSTime.sleep()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ros_compat.logging.ROSLogger"><code class="docutils literal notranslate"><span class="pre">ROSLogger</span></code></a><ul>
+<li><a class="reference internal" href="#ros_compat.logging.ROSLogger.debug"><code class="docutils literal notranslate"><span class="pre">ROSLogger.debug()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.logging.ROSLogger.error"><code class="docutils literal notranslate"><span class="pre">ROSLogger.error()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.logging.ROSLogger.info"><code class="docutils literal notranslate"><span class="pre">ROSLogger.info()</span></code></a></li>
+<li><a class="reference internal" href="#ros_compat.logging.ROSLogger.warn"><code class="docutils literal notranslate"><span class="pre">ROSLogger.warn()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -114,6 +139,256 @@ interface for writing nodes that work with both ROS1 (rospy) and ROS2 (rclpy).</
 </section>
 <section id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h2>
+<dl class="py class" id="module-ros_compat.node">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ros_compat.node.</span></span><span class="sig-name descname"><span class="pre">ROSNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for ROS nodes that work with both ROS1 and ROS2.</p>
+<p>This class provides a unified interface for creating nodes that work
+transparently with both ROS1 (rospy) and ROS2 (rclpy).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node_name</strong> (<em>str</em>) – Name of the node</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.create_client">
+<span class="sig-name descname"><span class="pre">create_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">srv_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.create_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.create_client" title="Link to this definition"></a></dt>
+<dd><p>Create a service client that works with both ROS versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Service name</p></li>
+<li><p><strong>srv_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></span>) – Service type class</p></li>
+<li><p><strong>timeout</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Optional timeout for waiting for service</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Service client object (either ROS1 or ROS2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.create_publisher">
+<span class="sig-name descname"><span class="pre">create_publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.create_publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.create_publisher" title="Link to this definition"></a></dt>
+<dd><p>Create a publisher that works with both ROS versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>topic</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Topic name to publish to</p></li>
+<li><p><strong>msg_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></span>) – Message type class</p></li>
+<li><p><strong>queue_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Publisher queue size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Publisher object (either ROS1 or ROS2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.create_service">
+<span class="sig-name descname"><span class="pre">create_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">srv_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.create_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.create_service" title="Link to this definition"></a></dt>
+<dd><p>Create a service server that works with both ROS versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Service name</p></li>
+<li><p><strong>srv_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></span>) – Service type class</p></li>
+<li><p><strong>callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – Service callback function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Service server object (either ROS1 or ROS2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.create_subscription">
+<span class="sig-name descname"><span class="pre">create_subscription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.create_subscription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.create_subscription" title="Link to this definition"></a></dt>
+<dd><p>Create a subscriber that works with both ROS versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>topic</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Topic name to subscribe to</p></li>
+<li><p><strong>msg_type</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></span>) – Message type class</p></li>
+<li><p><strong>callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – Callback function that takes a message argument</p></li>
+<li><p><strong>queue_size</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Subscriber queue size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Subscriber object (either ROS1 or ROS2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.create_timer">
+<span class="sig-name descname"><span class="pre">create_timer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.create_timer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.create_timer" title="Link to this definition"></a></dt>
+<dd><p>Create a timer that works with both ROS versions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>period</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Timer period in seconds</p></li>
+<li><p><strong>callback</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></span>) – Callback function to be called when timer triggers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Timer object (either ROS1 or ROS2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.shutdown">
+<span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.shutdown" title="Link to this definition"></a></dt>
+<dd><p>Shutdown the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.spin">
+<span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.spin" title="Link to this definition"></a></dt>
+<dd><p>Spin the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.node.ROSNode.spin_once">
+<span class="sig-name descname"><span class="pre">spin_once</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/node.html#ROSNode.spin_once"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.node.ROSNode.spin_once" title="Link to this definition"></a></dt>
+<dd><p>Execute one spin of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-ros_compat.time">
+<dt class="sig sig-object py" id="ros_compat.time.ROSTime">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ros_compat.time.</span></span><span class="sig-name descname"><span class="pre">ROSTime</span></span><a class="reference internal" href="_modules/ros_compat/time.html#ROSTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.time.ROSTime" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper for ROS time operations.</p>
+<p>This class provides a unified interface for time operations that work
+consistently across ROS1 and ROS2.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.time.ROSTime.now">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">now</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/time.html#ROSTime.now"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.time.ROSTime.now" title="Link to this definition"></a></dt>
+<dd><p>Get the current ROS time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current time in seconds.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<div class="admonition-examples admonition">
+<p class="admonition-title">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">current_time</span> <span class="o">=</span> <span class="n">ROSTime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current time: </span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.time.ROSTime.sleep">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/time.html#ROSTime.sleep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.time.ROSTime.sleep" title="Link to this definition"></a></dt>
+<dd><p>Sleep for specified duration in seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-ros_compat.logging">
+<dt class="sig sig-object py" id="ros_compat.logging.ROSLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ros_compat.logging.</span></span><span class="sig-name descname"><span class="pre">ROSLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/logging.html#ROSLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.logging.ROSLogger" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper for ROS logging functions.</p>
+<p>Provides a unified interface for logging in both ROS1 and ROS2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node_name</strong> (<em>str</em>) – Name of the node for logging context</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.logging.ROSLogger.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/logging.html#ROSLogger.debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.logging.ROSLogger.debug" title="Link to this definition"></a></dt>
+<dd><p>Log a debug message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.logging.ROSLogger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/logging.html#ROSLogger.error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.logging.ROSLogger.error" title="Link to this definition"></a></dt>
+<dd><p>Log an error message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.logging.ROSLogger.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/logging.html#ROSLogger.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.logging.ROSLogger.info" title="Link to this definition"></a></dt>
+<dd><p>Log an info message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ros_compat.logging.ROSLogger.warn">
+<span class="sig-name descname"><span class="pre">warn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ros_compat/logging.html#ROSLogger.warn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ros_compat.logging.ROSLogger.warn" title="Link to this definition"></a></dt>
+<dd><p>Log a warning message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
