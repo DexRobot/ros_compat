@@ -12,10 +12,12 @@ if ROS_VERSION == 2:
     from rclpy.time import Time as ROS2Time
     from rclpy.timer import Timer as ROS2Timer
     from rclpy.qos import QoSProfile, ReliabilityPolicy
-else:
+elif ROS_VERSION == 1:
     import rospy
     ros = rospy  # For consistent naming
     from rospy import Time as ROS1Time
+else:
+    ros = None
 
 from .time import ROSTime
 from .logging import ROSLogger
@@ -30,6 +32,8 @@ class ROSNode:
         node_name (str): Name of the node
     """
     def __init__(self, node_name: str):
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         self.node_name = node_name
 
         if ROS_VERSION == 2:

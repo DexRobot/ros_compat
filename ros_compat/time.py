@@ -4,8 +4,11 @@ try:
     import rclpy as ros
     from rclpy.time import Time as ROS2Time
 except ImportError:
-    import rospy as ros
-    from rospy import Time as ROS1Time
+    try:
+        import rospy as ros
+        from rospy import Time as ROS1Time
+    except ImportError:
+        ros = None
 
 
 class ROSTime:
@@ -26,6 +29,8 @@ class ROSTime:
             >>> current_time = ROSTime.now()
             >>> print(f"Current time: {current_time}")
         """
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         if ROS_VERSION == 2:
             return float(ros.time.Time().nanoseconds / 1e9)
         return float(ros.Time.now().to_sec())
@@ -33,6 +38,8 @@ class ROSTime:
     @staticmethod
     def sleep(duration: float) -> None:
         """Sleep for specified duration in seconds."""
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         if ROS_VERSION == 2:
             ros.time.sleep(duration)
         else:
