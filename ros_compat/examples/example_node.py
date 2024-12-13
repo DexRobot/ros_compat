@@ -11,16 +11,16 @@ class ExampleNode(ROSNode):
         super().__init__('example_node')
 
         # Publishers
-        self.string_pub = self.create_publisher('output', String)
+        self.string_pub = self.create_publisher(String, 'output')
 
         # Subscribers
-        self.create_subscription('input', String, self.message_callback)
+        self.create_subscription(String,'input',  self.message_callback)
 
         # Timer
         self.create_timer(1.0, self.timer_callback)
 
         # Service
-        self.create_service('toggle', SetBool, self.service_callback)
+        self.create_service(SetBool, 'toggle', self.service_callback)
 
         self.logger.info('Example node initialized')
 
@@ -28,7 +28,7 @@ class ExampleNode(ROSNode):
         """Handle incoming messages."""
         self.logger.info(f'Received message: {msg.data}')
 
-    def timer_callback(self) -> None:
+    def timer_callback(self, event: Any) -> None:
         """Periodic timer callback."""
         msg = String()
         msg.data = f'Current time: {ROSTime.now()}'

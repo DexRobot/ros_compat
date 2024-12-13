@@ -27,8 +27,8 @@ class ROSTime:
             >>> print(f"Current time: {current_time}")
         """
         if ROS_VERSION == 2:
-            return float(ros.time.Time().nanoseconds / 1e9)
-        return float(ros.Time.now().to_sec())
+            return float(ros.time.Time().nanoseconds) / 1e9
+        return float(ros.Time.now().to_nsec()) / 1e9
 
     @staticmethod
     def sleep(duration: float) -> None:
