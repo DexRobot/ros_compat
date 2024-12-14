@@ -92,3 +92,6 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+
+# Code2prompt artifact
+ros_compat.txt

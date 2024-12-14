@@ -10,11 +10,14 @@ class ExampleNode(ROSNode):
     def __init__(self):
         super().__init__('example_node')
 
+        # Get ROS time instance
+        self.ros_time = self.get_ros_time()
+
         # Publishers
         self.string_pub = self.create_publisher(String, 'output')
 
         # Subscribers
-        self.create_subscription(String,'input',  self.message_callback)
+        self.create_subscription(String, 'input', self.message_callback)
 
         # Timer
         self.create_timer(1.0, self.timer_callback)
@@ -31,7 +34,7 @@ class ExampleNode(ROSNode):
     def timer_callback(self, event: Any) -> None:
         """Periodic timer callback."""
         msg = String()
-        msg.data = f'Current time: {ROSTime.now()}'
+        msg.data = f'Current time: {self.ros_time.now()}'
         self.string_pub.publish(msg)
 
     def service_callback(self, request: SetBool, response: Any) -> Any:

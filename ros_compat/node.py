@@ -36,9 +36,11 @@ class ROSNode:
             ros.init()
             self.node = ROS2Node(node_name)
             self.callback_group = ReentrantCallbackGroup()
+            self._ros_time = ROSTime(self.node)
         else:
             ros.init_node(node_name)
             self.node = ros.get_caller_id()
+            self._ros_time = ROSTime()
 
         self.logger = ROSLogger(node_name)
 
@@ -150,6 +152,14 @@ class ROSNode:
                 client.wait_for_service(timeout)
             return client
         return ros.ServiceProxy(name, srv_type, persistent=True)
+
+    def get_ros_time(self) -> ROSTime:
+        """Get a ROSTime instance configured for this node.
+
+        Returns:
+            ROSTime: Time utility instance configured for this node
+        """
+        return self._ros_time
 
     def spin(self) -> None:
         """Spin the node."""
