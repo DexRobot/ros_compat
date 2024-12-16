@@ -5,7 +5,10 @@ from ros_compat import ROS_VERSION
 try:
     import rclpy as ros
 except ImportError:
-    import rospy as ros
+    try:
+        import rospy as ros
+    except ImportError:
+        ros = None
 
 class ROSLogger:
     """Wrapper for ROS logging functions.
@@ -16,6 +19,8 @@ class ROSLogger:
         node_name (str): Name of the node for logging context
     """
     def __init__(self, node_name: str):
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         self.node_name = node_name
         if ROS_VERSION == 2:
             self.logger = ros.logging.get_logger(node_name)

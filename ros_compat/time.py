@@ -35,6 +35,8 @@ class ROSTime:
             >>> current_time = time.now()
             >>> print(f"Current time: {current_time}")
         """
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         if ROS_VERSION == 2:
             return float(self._node.get_clock().now().nanoseconds) / 1e9
         return float(ros.Time.now().to_nsec()) / 1e9
@@ -58,6 +60,8 @@ class ROSTime:
     @staticmethod
     def sleep(duration: float) -> None:
         """Sleep for specified duration in seconds."""
+        if ROS_VERSION is None:
+            raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
         if ROS_VERSION == 2:
             ros.time.sleep(duration)
         else:

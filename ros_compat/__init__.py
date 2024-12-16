@@ -7,7 +7,9 @@ except ImportError:
         import rospy
         ROS_VERSION = 1
     except ImportError:
-        raise ImportError("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
+        import warnings
+        warnings.warn("Neither ROS1 (rospy) nor ROS2 (rclpy) was found")
+        ROS_VERSION = None
 
 from .node import ROSNode
 from .time import ROSTime
