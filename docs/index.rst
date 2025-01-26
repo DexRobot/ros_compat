@@ -1,5 +1,5 @@
-ROS Compatibility Layer Documentation
-===================================
+ROS Compatibility Layer
+=======================
 
 Welcome to the ROS Compatibility Layer documentation. This package provides a unified
 interface for writing nodes that work with both ROS1 (rospy) and ROS2 (rclpy).
